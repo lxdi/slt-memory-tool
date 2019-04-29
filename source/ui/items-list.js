@@ -24,7 +24,10 @@ const getItemsUI = function(component, items){
   const result = []
   items.forEach(item=>{
     const currentRep = getCurrentRep(item)
-    result.push(<div key={item.id} style={{border:'1px solid grey', padding:'3px', margin:'3px'}}>
+    if(item.color==null){
+      item.color = 'white'
+    }
+    result.push(<div key={item.id} style={{border:'1px solid grey', padding:'3px', margin:'3px', backgroundColor:item.color}}>
               <div>
                 <div style={{width:'80%', display:'inline-block'}}>
                   <input style={{width:'100%', display:'inline-box'}} type="text" value={item.title} onChange={(event)=>{handleTitleInput(component, event, item)}} />
@@ -40,7 +43,11 @@ const getItemsUI = function(component, items){
               <div>
                 </div>
                 <div>
-                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={20000}/>:null}
+                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={30000} callbackFinish={()=>{
+                    item.color = 'red'
+                    component.setState({})
+                    setTimeout(()=>{item.color='white'; component.setState({});}, 1000)
+                  }} />:null}
                 </div>
               </div>
             </div>)

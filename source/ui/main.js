@@ -10,10 +10,10 @@ export class Main extends React.Component {
 
   render(){
     return <div class='main-div'>
-        <ItemsList />
         <div>
           <a href='#' onClick={()=>fireEvent('items-rep', 'create-new', [{}])}>+ Add</a>
         </div>
+        <ItemsList />
     </div>
   }
 }

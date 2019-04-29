@@ -8,5 +8,5 @@ registerObject(repTitle, {items:[]})
 
 registerEvent(repTitle, 'create-new', (stStr, item)=>{
   item.id = itemsIds++;
-  chkSt(repTitle, 'items').push(item)
+  chkSt(repTitle, 'items').unshift(item)
 })

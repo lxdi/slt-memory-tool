@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const colorSchemes = [{left:'green', right:'white'}, {left:'yellow', right:'green'}, {left:'red', right:'yellow'}]
+const colorSchemes = [{left:'green', right:'none'}, {left:'yellow', right:'green'}, {left:'red', right:'yellow'}]
 
 const updateInterval = 500
 
@@ -9,7 +9,7 @@ const defaultState = function(component){
   return {length:300, currentColorScheme:0, shift:0, currentTimePx:0, lastPx:0}
 }
 
-//props: startTime, offset
+//props: startTime, offset, callbackFinish
 export class TimeLine extends React.Component {
   constructor(props){
     super(props)
@@ -44,6 +44,7 @@ const handleCurrentPos = function(component){
   if(newCurrentTimePx>=state.length){
     state.currentTimePx = state.length
     state.lastPx = 0
+    component.props.callbackFinish()
   } else {
     state.currentTimePx = newCurrentTimePx
     state.lastPx = newLastPx
