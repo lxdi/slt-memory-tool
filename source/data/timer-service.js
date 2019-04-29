@@ -4,8 +4,6 @@ const timerms = 5000
 const maxTimeOuts = 3
 const repeatTimes = 2
 
-registerObject('timer-service', {timers:{}})
-
 registerEvent('timer-service', 'start-repetition', (stStr, item)=>{
   if(item.repetitions==null){
     item.repetitions = []
@@ -23,25 +21,3 @@ registerEvent('timer-service', 'repetition-done', (stStr, item)=>{
     }
   })
 })
-
-// const timeoutHandler = function(item){
-//   item.repetitions.forEach(rep=>{
-//     if(rep.status == 'progress'){
-//       if(rep.times<repeatTimes){
-//         rep.times++
-//         startNewTimeout(item, true)
-//       }
-//     }
-//   })
-// }
-//
-// const startNewTimeout = function(item, isAgain){
-//   if(item.repetitions==null){
-//     item.repetitions = []
-//   }
-//   if(!isAgain){
-//     item.repetitions.push({status:'progress', times:1})
-//   }
-//   const timerid = setTimeout(()=>timeoutHandler(item), 5000)
-//   chkSt('timer-service', 'timers')[item.id] = timerid
-// }

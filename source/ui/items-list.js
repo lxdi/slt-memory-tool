@@ -40,7 +40,7 @@ const getItemsUI = function(component, items){
               <div>
                 </div>
                 <div>
-                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={5000}/>:null}
+                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={20000}/>:null}
                 </div>
               </div>
             </div>)
@@ -68,14 +68,3 @@ const getCurrentRep = function(item){
   }
   return result
 }
-
-// const repetitionsUI = function(item){
-//   const repCount = item.repetitions.length
-//   var status = ''
-//   item.repetitions.forEach(rep=>status=rep.status)
-//   var color = 'lightgrey'
-//   if(status!=''){
-//     if(status=='done')
-//   }
-//   return
-// }
