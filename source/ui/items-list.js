@@ -20,12 +20,16 @@ export class ItemsList extends React.Component {
   }
 }
 
+const itemdefaultcolor = 'aliceblue'
+const itemReadyForRepeatColor = 'peachpuff'
+const itemColorBlick = 'red'
+
 const getItemsUI = function(component, items){
   const result = []
   items.forEach(item=>{
     const currentRep = getCurrentRep(item)
     if(item.color==null){
-      item.color = 'white'
+      item.color = itemdefaultcolor
     }
     result.push(<div key={item.id} style={{border:'1px solid grey', padding:'3px', margin:'3px', backgroundColor:item.color}}>
               <div>
@@ -38,15 +42,15 @@ const getItemsUI = function(component, items){
                   </div>
                 </div>
                 <div style={{display:'inline-block', marginLeft:'3px'}}>
-                  <a href='#' onClick={()=>fireEvent('timer-service', 'repetition-done', [item])}>Done</a>
+                  <a href='#' onClick={()=>{item.color = itemdefaultcolor; fireEvent('timer-service', 'repetition-done', [item])}}>Done</a>
                 </div>
               <div>
                 </div>
                 <div>
-                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={30000} callbackFinish={()=>{
-                    item.color = 'red'
+                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={chkSt('timer-service', 'timerms')} callbackFinish={()=>{
+                    item.color = itemColorBlick
                     component.setState({})
-                    setTimeout(()=>{item.color='white'; component.setState({});}, 1000)
+                    setTimeout(()=>{item.color=itemReadyForRepeatColor; component.setState({});}, 1000)
                   }} />:null}
                 </div>
               </div>

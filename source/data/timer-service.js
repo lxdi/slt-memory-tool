@@ -1,8 +1,9 @@
 import {registerObject, fireEvent, registerEvent, chkSt} from 'absevents'
 
-const timerms = 5000
 const maxTimeOuts = 3
 const repeatTimes = 2
+
+registerObject('timer-service', {timerms:30000})
 
 registerEvent('timer-service', 'start-repetition', (stStr, item)=>{
   if(item.repetitions==null){
