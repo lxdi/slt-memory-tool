@@ -38,7 +38,7 @@ const getItemsUI = function(component, items){
                 </div>
                 <div style={{display:'inline-block', margin:'3px'}}>
                   <div style={{border:'1px solid lightgrey', borderRadius:'5px', display:'inline-block', padding:'3px', margin:'2px'}}>
-                    {item.repetitions==null?'0':item.repetitions.length}
+                    {getNumber(item)}
                   </div>
                 </div>
                 <div style={{display:'inline-block', marginLeft:'3px'}}>
@@ -47,7 +47,7 @@ const getItemsUI = function(component, items){
               <div>
                 </div>
                 <div>
-                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={chkSt('timer-service', 'timerms')} callbackFinish={()=>{
+                  {currentRep!=null?<TimeLine startTime={currentRep.startTime} offset={currentRep.offset} callbackFinish={()=>{
                     item.color = itemColorBlick
                     component.setState({})
                     setTimeout(()=>{item.color=itemReadyForRepeatColor; component.setState({});}, 1000)
@@ -77,5 +77,18 @@ const getCurrentRep = function(item){
       }
     })
   }
+  return result
+}
+
+const getNumber = function(item){
+  if(item.repetitions==null){
+    return 0
+  }
+  var result = 0
+  item.repetitions.forEach(rep => {
+    if(rep.status == 'done'){
+      result++
+    }
+  })
   return result
 }
