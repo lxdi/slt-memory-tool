@@ -1,7 +1,7 @@
 import {registerObject, fireEvent, registerEvent, chkSt} from 'absevents'
 
 const timerms = 5*60*1000
-const repsDelays = [timerms, timerms*2, timerms*3, timerms*4]
+const repsDelays = [timerms, timerms*2, timerms*3, timerms*4, timerms*5]
 
 //registerObject('timer-service', {timerms:timerms})
 
